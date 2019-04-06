@@ -36,9 +36,8 @@ export default {
   data () {
     return {
       items: [
-        require('../assets/1weekHP2.jpg'),
-        require('../assets/logo.png'),
-        require('../assets/logo.png')
+        require('../assets/images/logo.png'),
+        require('../assets/images/logo.png')
       ]
     }
   },
@@ -52,7 +51,7 @@ export default {
 <style scoped>
 .wrap-banner {
   font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
+  /* height: 100%; */
   overflow: hidden;
 }
 .main-title {
@@ -75,10 +74,9 @@ export default {
   width: 100%;
   height: 100%;
   margin: 0;
-  background-image: url("../assets/boy.jpg");
+  background-image: url("../assets/images/boy.jpg");
   background-size: cover;
   position: relative;
-  /* margin-bottom: 20px; */
 }
 .subtitle {
   font-size: 1.7rem;

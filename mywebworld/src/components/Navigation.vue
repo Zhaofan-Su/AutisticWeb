@@ -35,8 +35,6 @@ export default {
 
 <style scoped>
 .nav {
-  position: absolute;
-  z-index: 999;
   width: 100%;
 }
 .el-menu-demo li {

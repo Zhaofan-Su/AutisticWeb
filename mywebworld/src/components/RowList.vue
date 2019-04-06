@@ -7,8 +7,10 @@
           <div style="padding: 14px;">
             <span class="title">{{s.name}}</span>
             <div class="bottom clearfix">
-              <div class="detail">{{ s.detail }}</div>
-              <el-button type="text" class="button">{{s.operation}}</el-button>
+              <div class="intro">{{ s.intro }}</div>
+              <router-link v-bind:to="'/detail/'+ s.id">
+                <el-button type="text" class="button">{{s.operation}}</el-button>
+              </router-link>
             </div>
           </div>
         </el-card>
@@ -40,7 +42,7 @@ export default {
   padding-top: 5%;
   padding-bottom: 5%;
 }
-.detail {
+.intro {
   font-size: 13px;
   color: #999;
 }

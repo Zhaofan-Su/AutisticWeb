@@ -47,5 +47,6 @@ export default {
 .footer p {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 </style>

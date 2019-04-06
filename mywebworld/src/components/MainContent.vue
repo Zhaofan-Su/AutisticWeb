@@ -4,7 +4,7 @@
       <div class="chat">
         <h2 class="title">嗨！最近怎样？</h2>
         <!-- <p class="subtitle">把你的心事讲给我听吧</p> -->
-        <img src="../assets/robot.png">
+        <img src="../assets/images/robot.png">
         <el-row>
           <el-button type="primary">和我聊天吧</el-button>
         </el-row>
@@ -15,8 +15,8 @@
           <li v-for="event in events" :key="event.id">
             <el-card shadow="hover" class="event-card">
               <p class="date">{{event.date}}</p>
-              <img class="event-img" src="event.imgSrc">
-              <p class="event-detail">{{event.detail}}</p>
+              <img class="event-img" :src="event.imgSrc">
+              <p class="event-intro">{{event.intro}}</p>
             </el-card>
           </li>
         </ul>
@@ -53,39 +53,39 @@ export default {
       events: [
         {
           id: 1,
-          imgSrc: '../assets/logo.png',
-          detail: 'test1',
+          imgSrc: require('../assets/images/logo.png'),
+          intro: 'test1',
           date: '2019 3 29 | Shanghai'
         },
         {
           id: 2,
-          imgSrc: '../assets/logo.png',
-          detail: 'test2',
+          imgSrc: require('../assets/images/logo.png'),
+          intro: 'test2',
           date: '2019 3 29 | Shanghai'
         },
         {
           id: 3,
-          imgSrc: '../assets/logo.png',
-          detail: 'test3',
+          imgSrc: require('../assets/images/logo.png'),
+          intro: 'test3',
           date: '2019 3 29 | Shanghai'
         }
       ],
       gamelist: [
         {
           name: '你画我猜',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         },
         {
           name: 'game2',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         },
         {
           name: 'game3',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         }
@@ -93,40 +93,43 @@ export default {
       infolist: [
         {
           name: '什么是自闭症',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         },
         {
           name: 'info2',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         },
         {
           name: 'info3',
-          detail: new Date(),
+          intro: new Date(),
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         }
       ],
       storylist: [
         {
+          id: 1,
           name: 'LEONARDO | 4 YEARS OLD',
-          detail: '“Leo makes everything special. Hace especial todo”, dice Jessica, la mamá de Leo. “ El marca la diferencia entre mis dos hijos. El marca donde quiera que va la diferencia.”',
-          imgSrc: '#',
+          intro: '“Leo makes everything special. Hace especial todo”, dice Jessica, la mamá de Leo. “ El marca la diferencia entre mis dos hijos. El marca donde quiera que va la diferencia.”',
+          imgSrc: require('../assets/images/Leonardo_hero_2.jpg'),
           operation: 'Read More'
         },
         {
+          id: 2,
           name: 'BRIDGET L. | 10 YEARS OLD',
-          detail: '“Bridget is the pure heart of our family,” says Larry of his 10-year-old daughter.',
-          imgSrc: '#',
+          intro: '“Bridget is the pure heart of our family,” says Larry of his 10-year-old daughter.',
+          imgSrc: require('../assets/images/Bridget_SMALL_1.jpg'),
           operation: 'Read More'
         },
         {
+          id: 3,
           name: 'BRANDON B. | 49 YEARS OLD',
-          detail: '“I don’t think he sees the world as a challenge and I don’t see him being challenged by society,” says Reese, Brandon\'s brother.',
-          imgSrc: '#',
+          intro: '“I don’t think he sees the world as a challenge and I don’t see him being challenged by society,” says Reese, Brandon\'s brother.',
+          imgSrc: require('../assets/images/Brandon_SMALL_0.jpg'),
           operation: 'Read More'
         }
       ]
