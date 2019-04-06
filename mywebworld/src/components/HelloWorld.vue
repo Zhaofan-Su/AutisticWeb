@@ -24,6 +24,7 @@
       clickMode="push"
       class="lizi"
     ></vue-particles>
+
     <MainContent></MainContent>
   </div>
 </template>
@@ -51,7 +52,6 @@ export default {
 <style scoped>
 .wrap-banner {
   font-family: Arial, Helvetica, sans-serif;
-  position: relative;
   height: 100%;
   overflow: hidden;
 }
@@ -59,8 +59,8 @@ export default {
   text-align: center;
   color: #8256c1;
   position: absolute;
-  top: 20%;
-  left: 35%;
+  top: 15%;
+  left: 30%;
   z-index: 999;
 }
 .main-title h1 {
@@ -71,16 +71,17 @@ export default {
   margin: 0;
   font-weight: 400;
 }
+.lizi {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-image: url("../assets/boy.jpg");
+  background-size: cover;
+  position: relative;
+  /* margin-bottom: 20px; */
+}
 .subtitle {
   font-size: 1.7rem;
   margin: 0;
-}
-
-.lizi {
-  /* background-color: #d8e3e7; */
-  width: 100%;
-  height: 100%;
-  background-image: url("../assets/boy.jpg");
-  background-size: cover;
 }
 </style>
