@@ -25,17 +25,17 @@
 
     <div class="games">
       <p class="subtitle">Have fun with us.</p>
-      <rowlist v-bind:list="gamelist"></rowlist>
+      <rowlist :list="gamelist" :type="'game'"></rowlist>
     </div>
 
     <div class="informations">
       <p class="subtitle">Some information</p>
-      <rowlist v-bind:list="infolist"></rowlist>
+      <rowlist :list="infolist" :type="'information'"></rowlist>
     </div>
 
     <div class="stories">
       <p class="subtitle">Life on the Spectrum</p>
-      <rowlist v-bind:list="storylist"></rowlist>
+      <rowlist :list="storylist" :type="'story'"></rowlist>
     </div>
   </div>
 </template>
@@ -72,67 +72,89 @@ export default {
       ],
       gamelist: [
         {
-          name: '你画我猜',
-          intro: new Date(),
+          detail: {
+            name: '你画我猜',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         },
         {
-          name: 'game2',
-          intro: new Date(),
+          detail: {
+            name: 'game2',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         },
         {
-          name: 'game3',
-          intro: new Date(),
+          detail: {
+            name: 'game3',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: '开始游戏'
         }
       ],
       infolist: [
         {
-          name: '什么是自闭症',
-          intro: new Date(),
+          detail: {
+            name: '什么是自闭症',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         },
         {
-          name: 'info2',
-          intro: new Date(),
+          detail: {
+            name: 'info2',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         },
         {
-          name: 'info3',
-          intro: new Date(),
+          detail: {
+            name: 'info3',
+            intro: new Date()
+          },
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         }
       ],
       storylist: [
         {
-          id: 1,
-          name: 'LEONARDO | 4 YEARS OLD',
-          intro: '“Leo makes everything special. Hace especial todo”, dice Jessica, la mamá de Leo. “ El marca la diferencia entre mis dos hijos. El marca donde quiera que va la diferencia.”',
+          detail: {},
           imgSrc: require('../assets/images/Leonardo_hero_2.jpg'),
           operation: 'Read More'
         },
         {
-          id: 2,
-          name: 'BRIDGET L. | 10 YEARS OLD',
-          intro: '“Bridget is the pure heart of our family,” says Larry of his 10-year-old daughter.',
+          detail: {},
           imgSrc: require('../assets/images/Bridget_SMALL_1.jpg'),
           operation: 'Read More'
         },
         {
-          id: 3,
-          name: 'BRANDON B. | 49 YEARS OLD',
-          intro: '“I don’t think he sees the world as a challenge and I don’t see him being challenged by society,” says Reese, Brandon\'s brother.',
+          detail: {},
           imgSrc: require('../assets/images/Brandon_SMALL_0.jpg'),
           operation: 'Read More'
         }
       ]
+    }
+  },
+  created () {
+    this.getStoryList()
+  },
+  methods: {
+    getStoryList () {
+      this.$http.get('/story/all')
+        .then(response => {
+          for (var i = 0; i < response.data.length; i++) {
+            this.storylist[i].detail = response.data[i]
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

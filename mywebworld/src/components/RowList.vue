@@ -1,16 +1,21 @@
 <template>
   <div class="rows">
     <el-row>
-      <el-col v-for="s in list" :key="s.name">
+      <el-col v-for="s in list" :key="s.detail.id">
         <el-card :body-style="{ padding: '0px' }" shadow="hover">
           <img :src="s.imgSrc" class="image">
           <div style="padding: 14px;">
-            <span class="title">{{s.name}}</span>
+            <span class="title">{{s.detail.name}}</span>
             <div class="bottom clearfix">
-              <div class="intro">{{ s.intro }}</div>
-              <router-link v-bind:to="'/detail/'+ s.id">
-                <el-button type="text" class="button">{{s.operation}}</el-button>
-              </router-link>
+              <div class="intro">{{ s.detail.intro }}</div>
+              <!-- <router-link v-bind:to="'/detail/'+ s.detail.id"> -->
+
+              <el-button
+                type="text"
+                class="button"
+                v-on:click="goToDetail(s.detail.id)"
+              >{{s.operation}}</el-button>
+              <!-- </router-link> -->
             </div>
           </div>
         </el-card>
@@ -26,10 +31,21 @@ export default {
     list: {
       type: Array,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
     }
   },
   data () {
     return {
+    }
+  },
+  created () {
+  },
+  methods: {
+    goToDetail (id) {
+      this.$router.push(`/${this.type}/${id}`)
     }
   }
 }

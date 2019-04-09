@@ -12,7 +12,7 @@ export default new Router({
     name: 'HelloWorld',
     component: HelloWorld
   }, {
-    path: '/detail/:id',
+    path: 'story/:id',
     name: 'StoryDetail',
     component: StoryDetail
   }]

@@ -31,7 +31,7 @@ export default {
   },
   data () {
     return {
-      id: this.$route.params.id,
+      id: '',
       name: 'LEONARDO ',
       age: '4 Years old',
       intro: 'Leo makes everything special. Hace especial todo”, dice Jessica, la mamá de Leo. “ El marca la diferencia entre mis dos hijos. El marca donde quiera que va la diferencia.',
@@ -49,7 +49,18 @@ export default {
     }
   },
   created () {
-    // this.$http.get('')
+    this.getStoryDetail(this.$route.params.id)
+
+    this.id = this.$route.params.id
+    console.log(this.id)
+  },
+  methods: {
+    getStoryDetail (id) {
+      this.$http.get(`/story/detail/${id}`)
+        .then(response => {
+          console.log(response.data)
+        })
+    }
   }
 }
 </script>
