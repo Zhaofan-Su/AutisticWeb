@@ -8,7 +8,7 @@
     </div>
     <div class="detail">
       <div class="subtitle">
-        <h2>{{name}} | {{age}}</h2>
+        <h2>{{name}} | {{age}} years old</h2>
       </div>
 
       <div class="intro">
@@ -17,7 +17,7 @@
       </div>
 
       <div class="contents">
-        <p class="content" v-for="content in contents" :key="content">{{content.content}}</p>
+        <p class="content" v-for="content in contents" :key="content.id">{{content.content}}</p>
       </div>
     </div>
   </div>
@@ -26,39 +26,31 @@
 <script>
 export default {
   name: 'StoryDetail',
-  props: {
-
-  },
   data () {
     return {
       id: '',
-      name: 'LEONARDO ',
-      age: '4 Years old',
-      intro: 'Leo makes everything special. Hace especial todo”, dice Jessica, la mamá de Leo. “ El marca la diferencia entre mis dos hijos. El marca donde quiera que va la diferencia.',
-      contents: [
-        {
-          content: 'test1'
-        },
-        {
-          content: 'test1'
-        },
-        {
-          content: 'test1'
-        }
-      ]
+      name: '',
+      age: '',
+      intro: '',
+      contents: []
     }
   },
   created () {
-    this.getStoryDetail(this.$route.params.id)
-
-    this.id = this.$route.params.id
-    console.log(this.id)
+    // console.log(this.$route.params.id)
+    this.getStoryDetail()
+    // this.id = this.$route.params.id
   },
   methods: {
-    getStoryDetail (id) {
-      this.$http.get(`/story/detail/${id}`)
+    getStoryDetail () {
+      this.$http.get(`/story/detail/${this.$route.params.id}`)
         .then(response => {
-          console.log(response.data)
+          this.age = response.data.age
+          this.name = response.data.name
+          this.intro = response.data.intro
+          this.contents = response.data.contents
+        })
+        .catch(error => {
+          console.log(error)
         })
     }
   }

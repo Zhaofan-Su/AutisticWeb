@@ -13,9 +13,8 @@ def get_all_stories(request):
 
 
 @api_view(['GET'])
-def search_by_id(request):
-    story_id = request.data['id']
-    story = Story.Objects.get(id=story_id)
+def search_by_id(request, id):
+    story = Story.objects.get(id=id)
     if story is None:
         return Response(status=status.HTTP_204_NO_CONTENT)
     serializer = StorySerializer(story)

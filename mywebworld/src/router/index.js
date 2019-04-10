@@ -6,13 +6,13 @@ import StoryDetail from '@/components/StoryDetail'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [{
     path: '/',
     name: 'HelloWorld',
     component: HelloWorld
   }, {
-    path: 'story/:id',
+    path: '/story/:id',
     name: 'StoryDetail',
     component: StoryDetail
   }]

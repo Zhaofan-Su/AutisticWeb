@@ -8,14 +8,11 @@
             <span class="title">{{s.detail.name}}</span>
             <div class="bottom clearfix">
               <div class="intro">{{ s.detail.intro }}</div>
-              <!-- <router-link v-bind:to="'/detail/'+ s.detail.id"> -->
-
               <el-button
                 type="text"
                 class="button"
                 v-on:click="goToDetail(s.detail.id)"
               >{{s.operation}}</el-button>
-              <!-- </router-link> -->
             </div>
           </div>
         </el-card>
@@ -61,6 +58,8 @@ export default {
 .intro {
   font-size: 13px;
   color: #999;
+  display: inline-block;
+  line-height: 21px;
 }
 
 .bottom {
