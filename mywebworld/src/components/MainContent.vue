@@ -28,14 +28,15 @@
       <rowlist :list="gamelist" :type="'game'"></rowlist>
     </div>
 
-    <div class="informations">
-      <p class="subtitle">Some information</p>
-      <rowlist :list="infolist" :type="'information'"></rowlist>
+    <div class="stories">
+      <!-- <p class="subtitle">Life on the Spectrum</p> -->
+      <p class="subtitle">光谱上的生命</p>
+      <rowlist :list="storylist" :type="'story'"></rowlist>
     </div>
 
-    <div class="stories">
-      <p class="subtitle">Life on the Spectrum</p>
-      <rowlist :list="storylist" :type="'story'"></rowlist>
+    <div class="informations">
+      <p class="subtitle">相关资讯</p>
+      <rowlist :list="infolist" :type="'information'"></rowlist>
     </div>
   </div>
 </template>
@@ -98,26 +99,17 @@ export default {
       ],
       infolist: [
         {
-          detail: {
-            name: '什么是自闭症',
-            intro: new Date()
-          },
-          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          detail: {},
+          imgSrc: require('../assets/images/what is autism.png'),
           operation: 'Read More'
         },
         {
-          detail: {
-            name: 'info2',
-            intro: new Date()
-          },
-          imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+          detail: {},
+          imgSrc: require('../assets/images/boys signs.png'),
           operation: 'Read More'
         },
         {
-          detail: {
-            name: 'info3',
-            intro: new Date()
-          },
+          detail: {},
           imgSrc: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
           operation: 'Read More'
         }
@@ -143,8 +135,20 @@ export default {
   },
   created () {
     this.getStoryList()
+    this.getInfoList()
   },
   methods: {
+    getInfoList () {
+      this.$http.get('/information/all')
+        .then(response => {
+          for (var i = 0; i < response.data.length; i++) {
+            this.infolist[i].detail = response.data[i]
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     getStoryList () {
       this.$http.get('/story/all')
         .then(response => {
@@ -175,7 +179,7 @@ export default {
 }
 .first-row,
 .games,
-.stories {
+.informations {
   margin: 5% auto;
   overflow: hidden;
 }
@@ -225,7 +229,7 @@ export default {
   border-top: 0px;
 }
 .games,
-.stories {
+.informations {
   background-color: #f2f2f2;
 }
 

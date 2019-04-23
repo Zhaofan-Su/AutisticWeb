@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <div class="board">
-      <h1>
+      <h1 class="title">
         认识
-        <span class="title">{{name}}</span>
+        <span class="name">{{name}}</span>
       </h1>
     </div>
     <div class="detail">
@@ -16,14 +16,13 @@
         {{intro}}
       </div>
 
-      <div class="contents">
-        <p class="content" v-for="content in contents" :key="content.id">{{content.content}}</p>
-      </div>
+      <paraContent v-bind:contents="contents"></paraContent>
     </div>
   </div>
 </template>
 
 <script>
+import ParaContent from './ParaContent'
 export default {
   name: 'StoryDetail',
   data () {
@@ -35,10 +34,11 @@ export default {
       contents: []
     }
   },
+  components: {
+    'paraContent': ParaContent
+  },
   created () {
-    // console.log(this.$route.params.id)
     this.getStoryDetail()
-    // this.id = this.$route.params.id
   },
   methods: {
     getStoryDetail () {
@@ -60,7 +60,7 @@ export default {
 <style scoped>
 .subtitle,
 .intro {
-  padding: 2%;
+  padding: 2% 0px;
   border-bottom: 1px lightgray solid;
 }
 .board {
@@ -68,9 +68,9 @@ export default {
   background-color: #8256c1;
   text-align: center;
   color: #ffffff;
-  padding: 4% 4%;
+  padding: 4% 0px;
 }
-.title {
+.name {
   margin: 0 3%;
 }
 .detail {
@@ -89,12 +89,5 @@ export default {
   color: #8256c1;
   display: inline-block;
   font-size: 40px;
-}
-
-.content {
-  padding: 2%;
-  margin: 2px auto;
-  font-size: 12px;
-  color: #646464;
 }
 </style>

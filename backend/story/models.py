@@ -23,7 +23,7 @@ class Content(models.Model):
     content = models.TextField(verbose_name='详情', db_column='content')
 
     class Meta:
-        db_table = 'content'
+        db_table = 'storyContent'
         verbose_name_plural = '详情'
         verbose_name = 'story'
 

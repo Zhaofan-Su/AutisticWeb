@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from story.models import Story, Content
-from rest_framework import viewsets
 
 
 class ContentSerializer(serializers.ModelSerializer):

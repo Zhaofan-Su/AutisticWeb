@@ -55,6 +55,11 @@ export default {
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
+.title {
+  color: #8256c1;
+  font-weight: bold;
+}
 .intro {
   font-size: 13px;
   color: #999;

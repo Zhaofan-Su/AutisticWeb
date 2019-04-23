@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from story.serializers import StorySerializer, ContentSerializer
-from story.models import Story, Content
+from story.serializers import StorySerializer
+from story.models import Story
 
 
 @api_view(["GET"])
