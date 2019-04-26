@@ -7,10 +7,13 @@ import App from './App'
 import VueParticles from 'vue-particles'
 import router from './router'
 import axios from 'axios'
+import {
+  fabric
+} from 'fabric'
 
 Vue.use(ElementUI)
 Vue.use(VueParticles)
-
+Vue.use(fabric)
 Vue.config.productionTip = false
 
 Vue.prototype.$http = axios

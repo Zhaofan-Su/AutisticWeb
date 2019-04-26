@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import StoryDetail from '@/components/StoryDetail'
 import InformationDetail from '@/components/InformationDetail'
+import QuickDraw from '@/components/QuickDraw'
 Vue.use(Router)
 
 export default new Router({
@@ -19,5 +20,9 @@ export default new Router({
     path: '/information/:id',
     name: 'InformationDetail',
     component: InformationDetail
+  }, {
+    path: '/games/quickDraw',
+    name: 'QuickDraw',
+    component: QuickDraw
   }]
 })
