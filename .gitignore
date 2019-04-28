@@ -2,4 +2,4 @@ backend/web_env/
 __pycache__/
 *.txt
 data
-models
+node_modules
