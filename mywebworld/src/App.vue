@@ -25,4 +25,11 @@ export default {
 #App {
   height: 100%;
 }
+/* .el-radio__input.is-checked .el-radio__inner {
+  background-color: #8256c1;
+  border-color: #8256c1;
+}
+.el-radio__input.is-checked + .el-radio__label {
+  color: #8256c1;
+} */
 </style>

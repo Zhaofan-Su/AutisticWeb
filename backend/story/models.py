@@ -7,6 +7,10 @@ class Story(models.Model):
     name = models.CharField(max_length=40, verbose_name='姓名', db_column='name')
     age = models.IntegerField(verbose_name='年龄', db_column='age')
     intro = models.TextField(verbose_name='介绍', db_column='intro')
+    videoUrl = models.CharField(max_length=200,
+                                verbose_name='视频地址',
+                                db_column='videoUrl',
+                                null=True)
 
     class Meta:
         db_table = 'story'
@@ -18,8 +22,9 @@ class Story(models.Model):
 
 
 class Content(models.Model):
-    story = models.ForeignKey(
-        Story, related_name='contents', on_delete=models.CASCADE)
+    story = models.ForeignKey(Story,
+                              related_name='contents',
+                              on_delete=models.CASCADE)
     content = models.TextField(verbose_name='详情', db_column='content')
 
     class Meta:

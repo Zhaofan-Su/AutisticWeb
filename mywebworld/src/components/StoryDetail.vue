@@ -16,6 +16,15 @@
         {{intro}}
       </div>
 
+      <div class="embed-youtube">
+        <iframe
+          width="100%"
+          height="480"
+          frameborder="0"
+          allowfullscreen="allowfullscreen"
+          :src="videoUrl"
+        ></iframe>
+      </div>
       <paraContent v-bind:contents="contents"></paraContent>
     </div>
   </div>
@@ -31,6 +40,7 @@ export default {
       name: '',
       age: '',
       intro: '',
+      videoUrl: '',
       contents: []
     }
   },
@@ -47,6 +57,7 @@ export default {
           this.age = response.data.age
           this.name = response.data.name
           this.intro = response.data.intro
+          this.videoUrl = response.data.videoUrl
           this.contents = response.data.contents
         })
         .catch(error => {
@@ -89,5 +100,9 @@ export default {
   color: #8256c1;
   display: inline-block;
   font-size: 40px;
+}
+.embed-youtube {
+  margin: 2% auto;
+  width: 80%;
 }
 </style>

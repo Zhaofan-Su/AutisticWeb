@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import StoryDetail from '@/components/StoryDetail'
 import InformationDetail from '@/components/InformationDetail'
 import QuickDraw from '@/components/QuickDraw'
+import Score from '@/components/Score'
+import ChinaMap from '@/components/ChinaMap'
 Vue.use(Router)
 
 export default new Router({
@@ -24,5 +26,13 @@ export default new Router({
     path: '/games/quickDraw',
     name: 'QuickDraw',
     component: QuickDraw
+  }, {
+    path: '/score',
+    name: 'Score',
+    component: Score
+  }, {
+    path: '/map',
+    name: 'Map',
+    component: ChinaMap
   }]
 })

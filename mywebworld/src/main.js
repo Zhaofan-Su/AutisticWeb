@@ -7,14 +7,16 @@ import App from './App'
 import VueParticles from 'vue-particles'
 import router from './router'
 import axios from 'axios'
+import echarts from 'echarts'
 
 Vue.use(ElementUI)
 Vue.use(VueParticles)
-
 Vue.config.productionTip = false
 
+Vue.prototype.$echarts = echarts
 Vue.prototype.$http = axios
 Vue.prototype.HOST = '/api'
+
 axios.defaults.baseURL = 'http://127.0.0.1:8000'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-fromurlencodeed'
 /* eslint-disable no-new */

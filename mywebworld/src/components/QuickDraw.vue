@@ -8,7 +8,8 @@
 import {
   fabric
 } from 'fabric'
-import * as tf from '@tensorflow/tfjs'
+// import * as tf from '@tensorflow/tfjs'
+// import * as tfn from '@tensorflow/tfjs-node'
 export default {
   name: 'QuickDraw',
   data () {
@@ -28,12 +29,12 @@ export default {
     this.prepareCanvas()
   },
   methods: {
-    async  loadModel () {
-      this.model = await tf.loadModel(`/models/model.json`)
-      this.model.predict(tf.zeros([1, 28, 28, 1]))
-      this.allowDrawing()
-      await this.loadSymbols()
-    },
+    // async  loadModel () {
+    //   this.model = await tf.loadGraphModel('https://github.com/zaidalyafeai/zaidalyafeai.github.io/blob/master/sketcher/model2/model.json')
+    //   this.model.predict(tf.zeros([1, 28, 28, 1])).print()
+    //   this.allowDrawing()
+    //   await this.loadSymbols()
+    // },
     prepareCanvas () {
       this.canvas = new fabric.Canvas('drawBoard')
       this.canvas.backgroundColor = '#ffffff'
@@ -130,7 +131,7 @@ export default {
       }
     },
     loadSymbols () {
-      this.$http.get('AIModels/used_classes.txt')
+      this.$http.get('model/calss_names.txt')
         .then(response => {
           var list = response.data.split(/\n/)
           this.symbols = []
