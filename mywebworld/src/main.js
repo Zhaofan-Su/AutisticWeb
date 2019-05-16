@@ -8,9 +8,12 @@ import VueParticles from 'vue-particles'
 import router from './router'
 import axios from 'axios'
 import echarts from 'echarts'
+// import cityMap from './js/china-main-city-map'
+import 'echarts/extension/bmap/bmap'
 
 Vue.use(ElementUI)
 Vue.use(VueParticles)
+// Vue.use(cityMap)
 Vue.config.productionTip = false
 
 Vue.prototype.$echarts = echarts

@@ -23,6 +23,11 @@
           frameborder="0"
           allowfullscreen="allowfullscreen"
           :src="videoUrl"
+          v-loading="loading"
+          element-loading-text="拼命加载中"
+          element-loading-spinner="el-icon-loading"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+          @onload="load"
         ></iframe>
       </div>
       <paraContent v-bind:contents="contents"></paraContent>
@@ -41,7 +46,8 @@ export default {
       age: '',
       intro: '',
       videoUrl: '',
-      contents: []
+      contents: [],
+      loading: true
     }
   },
   components: {
@@ -63,6 +69,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    load () {
+      this.loading = false
     }
   }
 }
