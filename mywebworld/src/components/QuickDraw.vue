@@ -8,7 +8,7 @@
 import {
   fabric
 } from 'fabric'
-// import * as tf from '@tensorflow/tfjs'
+import * as tf from '@tensorflow/tfjs'
 // import * as tfn from '@tensorflow/tfjs-node'
 export default {
   name: 'QuickDraw',
@@ -29,12 +29,12 @@ export default {
     this.prepareCanvas()
   },
   methods: {
-    // async  loadModel () {
-    //   this.model = await tf.loadGraphModel('https://github.com/zaidalyafeai/zaidalyafeai.github.io/blob/master/sketcher/model2/model.json')
-    //   this.model.predict(tf.zeros([1, 28, 28, 1])).print()
-    //   this.allowDrawing()
-    //   await this.loadSymbols()
-    // },
+    async  loadModel () {
+      this.model = await tf.loadLayerModel('../../static/models/model.json')
+      this.model.predict(tf.zeros([1, 28, 28, 1])).print()
+      this.allowDrawing()
+      await this.loadSymbols()
+    },
     prepareCanvas () {
       this.canvas = new fabric.Canvas('drawBoard')
       this.canvas.backgroundColor = '#ffffff'
@@ -108,6 +108,21 @@ export default {
       }
       return result
     },
+
+    // 预处理数据
+    preprocess (imgData) {
+      // 转换为张量
+      let tensor = tf.browser.fromPixels(ImageData, numChannels = 1)
+      // resize
+      const resized = tf.image.resizeBilinear(tensor, [28, 28]).toFloat()
+      // 归一化
+      const offset = tf.scalar(255.0)
+      const normalized = tf.scalar(1.0).sub(resized.div(offset));
+
+      // 增加一维
+      const batched = normalized.expandDims(0)
+      return batched
+    },
     getFrame () {
       // 获取canvas的当前帧
       if (this.coords.length >= 2) {
@@ -145,7 +160,13 @@ export default {
     },
     allowDrawing () {
       // 允许在canvas上绘图
-
+      this.isDrawingMode = 1
+    },
+    // 清空画布
+    erase () {
+      this.canvas.clear();
+      this.canvas.backgroundColor = '#ffffff';
+      this.coords = [];
     }
   }
 }
