@@ -1,8 +1,14 @@
 <template>
+  <!-- <div id="App">
+    <Navigation></Navigation>
+  <router-view></router-view>-->
+  <!-- <Live2d></Live2d> -->
+  <!-- <Footer></Footer>
+  </div>-->
   <div id="App">
     <Navigation></Navigation>
     <router-view></router-view>
-    <!-- <Live2d></Live2d> -->
+
     <Footer></Footer>
   </div>
 </template>
@@ -27,7 +33,7 @@ export default {
 }
 #App {
   height: 100%;
-  background-color: #f7f4ed;
+  background-color: #fdf4eb;
 }
 /* .el-radio__input.is-checked .el-radio__inner {
   background-color: #8256c1;

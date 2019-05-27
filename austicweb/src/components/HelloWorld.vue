@@ -5,6 +5,7 @@
       <p class="subtitle">阳光中微笑</p>
       <p class="subtitle">星空下祝福</p>
     </div>
+
     <!--动态粒子背景-->
     <vue-particles
       color="#fecc11"
@@ -24,13 +25,15 @@
       clickMode="push"
       class="lizi"
     ></vue-particles>
+    <MainContent class="main"></MainContent>
 
-    <MainContent></MainContent>
+    <!-- <Background class="lizi"></Background> -->
   </div>
 </template>
 
 <script>
 import MainContent from './MainContent'
+import Background from './Background'
 export default {
   name: 'HelloWorld',
   data () {
@@ -42,7 +45,7 @@ export default {
     }
   },
   components: {
-    MainContent
+    MainContent, Background
   }
 }
 </script>

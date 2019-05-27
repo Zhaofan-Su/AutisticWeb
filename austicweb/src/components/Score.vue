@@ -1,8 +1,22 @@
 <template>
   <div>
     <div id="intro" v-if="!test">
-      <p>本测评是儿童孤独症评定量表（childhood autism rating scale 简称CARS量表），孤独症也叫自闭症，该量表编制于２０世纪８０年代初，从１５个主要方面对孤独症儿童进行评估，是主要适用于专业人员评定（如医师或儿童心理测验专职人员），应用时最好能结合儿童孤独症家长评定量表共同使用。</p>
-      <el-card class="box-card">
+      <div class="text-xs-center">
+        <v-dialog v-model="dialog" width="500">
+          <v-card>
+            <v-card-title class="headline deep-purple lighten-1" primary-title></v-card-title>
+            <v-card-text>本测评是儿童孤独症评定量表（childhood autism rating scale 简称CARS量表），孤独症也叫自闭症，该量表编制于２０世纪８０年代初，从１５个主要方面对孤独症儿童进行评估，是主要适用于专业人员评定（如医师或儿童心理测验专职人员），应用时最好能结合儿童孤独症家长评定量表共同使用。</v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer>
+                <v-btn color="#8256c1" round @click="dialog = false" style="color:#fff">进入测试</v-btn>
+              </v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+      <!-- <p>本测评是儿童孤独症评定量表（childhood autism rating scale 简称CARS量表），孤独症也叫自闭症，该量表编制于２０世纪８０年代初，从１５个主要方面对孤独症儿童进行评估，是主要适用于专业人员评定（如医师或儿童心理测验专职人员），应用时最好能结合儿童孤独症家长评定量表共同使用。</p> -->
+      <!-- <el-card class="box-card">
         <div slot="header" class="clearfix">
           <span>测试须知</span>
         </div>
@@ -17,10 +31,10 @@
         <div id="start">
           <el-button type="primary" round v-on:click="startTest">开始测试</el-button>
         </div>
-      </el-card>
+      </el-card>-->
     </div>
-
-    <div v-if="test">
+    <div class="empty" v-if="dialog"></div>
+    <div v-else>
       <div class="progress">
         <el-progress :percentage="parseInt(((active+1)/15)*100)" color="#8e71c7"></el-progress>
       </div>
@@ -29,27 +43,34 @@
           <div slot="header" class="clearfix">
             <span>{{questions[active].title}}</span>
           </div>
-          <el-radio-group v-model="questions[active].choice" class="option">
+          <el-radio-group class="option" v-model="checkedValue">
             <p class="text item">
-              <el-radio :label="questions[active].proper"></el-radio>
+              <el-radio :label="1">{{questions[active].proper}}</el-radio>
             </p>
             <p class="text item">
-              <el-radio :label="questions[active].mild"></el-radio>
+              <el-radio :label="2">{{questions[active].mild}}</el-radio>
             </p>
             <p class="text item">
-              <el-radio :label="questions[active].moderate"></el-radio>
+              <el-radio :label="3">{{questions[active].moderate}}</el-radio>
             </p>
             <p class="text item">
-              <el-radio :label="questions[active].badly"></el-radio>
+              <el-radio :label="4">{{questions[active].badly}}</el-radio>
             </p>
           </el-radio-group>
         </el-card>
       </div>
-      <div class="button">
+      <div class="button" v-if="active!=14">
         <el-button type="primary" icon="el-icon-arrow-left" v-on:click="lastQuestion">上一题</el-button>
         <el-button type="primary" v-on:click="nextQuestion">
           下一题
           <i class="el-icon-arrow-right el-icon--right"></i>
+        </el-button>
+      </div>
+      <div class="button" v-else>
+        <el-button type="primary" icon="el-icon-arrow-left" v-on:click="lastQuestion">上一题</el-button>
+        <el-button type="primary" v-on:click="finish">
+          完&nbsp;&nbsp;成
+          <i class="el-icon-check el-icon--right"></i>
         </el-button>
       </div>
     </div>
@@ -61,10 +82,14 @@ export default {
   name: 'Score',
   data () {
     return {
+      dialog: true,
       labelPosition: 'top',
       test: false,
       questions: [],
-      active: 0
+      active: 0,
+      checkedValue: 0,
+      sum: 0,
+      choices: []
     }
   },
   created () {
@@ -81,7 +106,6 @@ export default {
             question.mild = element.mild
             question.moderate = element.moderate
             question.badly = element.badly
-            question.choice = ''
             this.questions.push(question)
           })
         })
@@ -96,11 +120,24 @@ export default {
       if (this.active > 0) {
         this.active--
       }
+      this.sum -= this.choices[this.active]
+      this.checkedValue = this.choices[this.active]
     },
     nextQuestion () {
+      this.sum += this.checkedValue
+      this.choices[this.active - 1] = this.checkedValue
+      if (this.choices[this.active] != null) {
+        this.checkedValue = this.choices[this.active]
+      }
+      else {
+        this.checkedValue = 0
+      }
       if (this.active < this.questions.length - 1) {
         this.active++
       }
+    },
+    finish () {
+
     }
   }
 }
@@ -109,6 +146,7 @@ export default {
 <style scoped>
 .item {
   margin-bottom: 18px;
+  overflow: hidden;
 }
 .clearfix:before,
 .clearfix:after {
@@ -128,6 +166,10 @@ export default {
 .box-card {
   width: 50%;
   margin: 5% auto;
+}
+.empty {
+  min-height: 500px;
+  height: 100%;
 }
 .progress {
   width: 55%;

@@ -167,7 +167,6 @@ export default {
 <style scoped>
 .main {
   padding-top: 20px;
-  /* padding-bottom: 5%; */
   width: 80%;
   height: 100%;
   overflow: hidden;
@@ -227,10 +226,17 @@ export default {
   border-right: 0px;
   border-left: 0px;
   border-top: 0px;
+  border-radius: 12px;
+  margin: 3px auto;
+}
+
+.event-card:hover {
+  background-color: grey;
 }
 .games,
 .informations {
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
+  background-color: #f7f6f4;
 }
 
 .subtitle {

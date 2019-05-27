@@ -9,9 +9,14 @@ import router from './router'
 import axios from 'axios'
 import echarts from 'echarts'
 import 'echarts/extension/bmap/bmap'
-
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+// import 'material-design-icons-iconfont/dist/material-design-icons.css'
 Vue.use(ElementUI)
 Vue.use(VueParticles)
+Vue.use(Vuetify, {
+  iconfont: 'mdi'
+})
 Vue.config.productionTip = false
 
 Vue.prototype.$echarts = echarts
